@@ -58,7 +58,8 @@ class Running(Training):
 
     # (18 * средняя_скорость - 20) * вес_спортсмена / M_IN_KM * время_тренировки_в_минутах
     def get_spent_calories(self, coffee_calorie_1=18, coffee_calorie_2=20) -> float:
-        return (coffee_calorie_1 * self.get_mean_speed() - coffee_calorie_2) * self.weight / self.M_IN_KM * (self.duration * 60)
+        return (coffee_calorie_1 * self.get_mean_speed() - coffee_calorie_2) * self.weight / self.M_IN_KM * (
+                    self.duration * 60)
         pass
 
     def show_training_info(self) -> InfoMessage:
@@ -79,7 +80,8 @@ class SportsWalking(Training):
         self.height = height
 
     def get_spent_calories(self):
-        return (0.035 * self.weight + (self.get_mean_speed() ** 2 // self.height) * 0.029 * self.weight) * self.duration * 60
+        return (0.035 * self.weight + (
+                    self.get_mean_speed() ** 2 // self.height) * 0.029 * self.weight) * self.duration * 60
         pass
 
     def show_training_info(self) -> InfoMessage:
