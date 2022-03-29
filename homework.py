@@ -9,8 +9,11 @@ class InfoMessage:
         self.calories = calories
 
     def get_message(self):
-        return f'Тип тренировки: {self.training_type}; Длительность: {"%.3f" % self.duration} ч.; ' \
-               f'Дистанция: {"%.3f" % self.distance} км; Ср. скорость: {"%.3f" % self.speed} км/ч; Потрачено ккал: {"%.3f" % self.calories}.'
+        return f'Тип тренировки: {self.training_type}; ' \
+               f'Длительность: {"%.3f" %self.duration} ч.; ' \
+               f'Дистанция: {"%.3f" % self.distance} км; ' \
+               f'Ср. скорость: {"%.3f" %self.speed} км/ч; ' \
+               f'Потрачено ккал: {"%.3f" %self.calories}.'
         pass
 
 
@@ -53,13 +56,12 @@ class Training:
         pass
 
 
+# noinspection TaskProblemsInspection
 class Running(Training):
     """Тренировка: бег."""
 
-    # (18 * средняя_скорость - 20) * вес_спортсмена / M_IN_KM * время_тренировки_в_минутах
-    def get_spent_calories(self, coffee_calorie_1=18, coffee_calorie_2=20) -> float:
-        return (coffee_calorie_1 * self.get_mean_speed() - coffee_calorie_2) * self.weight / self.M_IN_KM * (
-                    self.duration * 60)
+    def get_spent_calories(self, coffee_calorie_1=18, coffee_calorie_2=20):
+        return (coffee_calorie_1 * self.get_mean_speed() - coffee_calorie_2) * self.weight / self.M_IN_KM * (self.duration * 60)
         pass
 
     def show_training_info(self) -> InfoMessage:
@@ -71,6 +73,7 @@ class Running(Training):
         pass
 
 
+# noinspection TaskProblemsInspection
 class SportsWalking(Training):
     """Тренировка: спортивная ходьба."""
     LEN_STEP = 0.65
@@ -80,8 +83,7 @@ class SportsWalking(Training):
         self.height = height
 
     def get_spent_calories(self):
-        return (0.035 * self.weight + (
-                    self.get_mean_speed() ** 2 // self.height) * 0.029 * self.weight) * self.duration * 60
+        return (0.035 * self.weight + (self.get_mean_speed() ** 2 // self.height) * 0.029 * self.weight) * self.duration * 60
         pass
 
     def show_training_info(self) -> InfoMessage:
@@ -93,6 +95,7 @@ class SportsWalking(Training):
         pass
 
 
+# noinspection TaskProblemsInspection
 class Swimming(Training):
     """Тренировка: плавание."""
     LEN_STEP = 1.38
@@ -118,7 +121,7 @@ class Swimming(Training):
 
 
 def read_package(workout_type: str, data: list) -> Training:
-    "Прочитать данные полученные от датчиков."
+    """Прочитать данные полученные от датчиков."""
 
     if workout_type == 'SWM':
         return Swimming(data[0], data[1], data[2], data[3], data[4])
