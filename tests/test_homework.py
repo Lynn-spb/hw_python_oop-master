@@ -361,5 +361,4 @@ def test_main_output(input_data, expected):
         training = homework.read_package(*input_data)
         homework.main(training)
     assert get_message_output == expected, (
-        'Метод `main` должен печатать результат в консоль.\n'
-    )
+        'Метод `main` должен печатать результат в консоль.\n')
