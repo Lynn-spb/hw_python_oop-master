@@ -111,23 +111,12 @@ class Swimming(Training):
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
 
-    workout_type = {
+    workout_dic = {
         'SWM': Swimming,
         'RUN': Running,
         'WLK': SportsWalking
     }
-
-   # return workout_types[workout_type]
-
-    for workout_types in workout_type.keys():
-        return workout_types
-
-    # if workout_type == 'SWM':
-    #     return Swimming(data[0], data[1], data[2], data[3], data[4])
-    # elif workout_type == 'RUN':
-    #     return Running(data[0], data[1], data[2])
-    # elif workout_type == 'WLK':
-    #     return SportsWalking(data[0], data[1], data[2], data[3])
+    return workout_dic[workout_type](*data)
     pass
 
 
